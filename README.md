@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# MyFirstExpoApp
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Cross‑platform social feed app built with Expo Router, React Native, and TypeScript.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Posts feed with likes, comments, bookmarks, and edit-on-long-press
+- Create post screen with character counter and keyboard-safe layout
+- Profile with avatar, bio, post/like stats, Edit Profile screen
+- Persistent data with AsyncStorage (posts, user profile)
+- Saved tab for bookmarked posts
+- Search and pull-to-refresh on the feed
+- Light/dark aware via React Navigation theme
 
-   ```bash
-   npm install
-   ```
+## Quick start
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1) Install dependencies
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2) Run the app
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Press `a` for Android, `i` for iOS, or open the web preview. Use the QR code with Expo Go on device.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Project structure
 
-## Join the community
+```
+app/
+  (tabs)/           # Tab routes: feed, create, saved, profile
+  profile/edit.tsx  # Edit profile screen
+components/         # UI components (PostItem, PrimaryButton, modals)
+context/            # PostContext, UserContext (AsyncStorage powered)
+assets/             # Images and app assets
+types.ts            # Shared TypeScript types (Post, Comment, User)
+```
 
-Join our community of developers creating universal apps.
+## Key files
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- `context/PostContext.tsx`: posts state; add/like/edit/delete, comments, bookmarks; debounced persistence
+- `context/UserContext.tsx`: user profile; name/bio/avatar with persistence
+- `components/PostItem.tsx`: post card (likes, comments, bookmark, edit modal)
+- `components/EditPostModal.tsx`: inline editing modal
+- `components/ConfirmModal.tsx`: confirm delete modal
+- `components/PrimaryButton.tsx`: consistent button across platforms
+
+## Tips
+
+- Clear saved posts (Profile → Clear Feed) to reset local data
+- If dev server logs a stale warning, run with cache reset:
+
+```bash
+npx expo start -c
+```
+
+## Tech
+
+- Expo SDK 54, Expo Router
+- React Native 0.81, React 19
+- TypeScript
+
