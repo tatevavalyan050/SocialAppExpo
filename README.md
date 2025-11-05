@@ -1,4 +1,4 @@
-# MyFirstExpoApp
+# My First Expo App
 
 Cross‑platform social feed app built with Expo Router, React Native, and TypeScript.
 
